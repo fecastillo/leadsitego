@@ -8,7 +8,7 @@ const TokenDinero = "5476255A-D84D-4F7B-87B2-C72B3CA8085B";
 const TokenVivienda = "83D6D11D-D029-40C9-AB1E-AB423C63598C";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;;
 var form ="";
 
 // Enter the Page Access Token from the previous step
