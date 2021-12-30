@@ -5,5 +5,15 @@
     "express": "^4.17.2",
     "mongodb": "^4.2.2",
     "ngrok": "^4.2.2"
-  }
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "name": "leadsfb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
