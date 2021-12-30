@@ -114,9 +114,6 @@ async function addRecord(dataRecord){
         await client.connect();
         const result = await client.db("leads").collection("leads").insertOne(dataRecord);
         console.log(`Registro agregado correctamente ID: ${result.insertedId}`);
-    } 
-    catch (err) {
-        console.log(err);
     }
     finally {
         // Close the connection to the MongoDB cluster
