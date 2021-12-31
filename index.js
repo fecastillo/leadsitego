@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;;
 var form ="";
 
 // Enter the Page Access Token from the previous step
-const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BANEMWUPOqdyKfK85YHYGyGMH1HxUgZB3ZCP8WHY8mnrZBL2iODl754ip1T32oLjEIK5hpZB3r6ZAPLNGD2UuwzgN7PG1SP9KNqaDeC0cAHkw1qBEdGkoO8JijkJLK75DsCp1E852yQsuZCIEgs9Np7gZAwhUvmqilQHLylv1P2ws6DOG0Gl4yhJSxCykeJlAQZDZD';
+const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BANjF3EHiHVfwbIeWVzbiXhuZA8UMH7dvCACe6ZAIoNCw7uAqaZAQqcxUwqitMoy6MwQV1feKbFnoQ93qsT6LWwP3ltEVjNJ7s2zZBoFq59lr9ca5VaErHDyVGZBfp5faul1pHyJZBQmjzTXBtJqoB1SMZAmDEcoXiPD7uint2A68RgPcNMwYC0ZD';
 
 // Accept JSON POST body
 app.use(bodyParser.json());
@@ -114,10 +114,7 @@ async function addRecord(dataRecord){
         await client.connect();
         const result = await client.db("leads").collection("leads").insertOne(dataRecord);
         console.log(`Registro agregado correctamente ID: ${result.insertedId}`);
-    } 
-    catch (err) {
-        console.log(err);
-    }
+    }    
     finally {
         // Close the connection to the MongoDB cluster
         await client.close();
