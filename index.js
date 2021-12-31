@@ -10,6 +10,7 @@ const TokenVivienda = "83D6D11D-D029-40C9-AB1E-AB423C63598C";
 const app = express();
 const port = process.env.PORT || 3000;;
 var form ="";
+var idLead = "";
 
 // Enter the Page Access Token from the previous step
 const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BANjF3EHiHVfwbIeWVzbiXhuZA8UMH7dvCACe6ZAIoNCw7uAqaZAQqcxUwqitMoy6MwQV1feKbFnoQ93qsT6LWwP3ltEVjNJ7s2zZBoFq59lr9ca5VaErHDyVGZBfp5faul1pHyJZBQmjzTXBtJqoB1SMZAmDEcoXiPD7uint2A68RgPcNMwYC0ZD';
@@ -33,6 +34,7 @@ app.get('/webhook', (req, res) => {
 app.post('/webhook', async (req, res) => {
     // Facebook will be sending an object called "entry" for "leadgen" webhook event
     form = req.body.entry[0].changes[0].value.form_id;
+    idLead = req.body.entry[0].changes[0].value.leadgen_id;
     if (!req.body.entry) {
         return res.status(500).send({ error: 'Invalid POST data received' });
     }
@@ -95,6 +97,8 @@ async function sendData(data) {
         mongoData.estado = respuesta.data.estado;
         mongoData.mensaje = respuesta.data.mensaje;
         mongoData.fecha = new Date();
+        mongoData.formulario = form;
+        mongoData.idLead = idLead;
         addRecord(mongoData);
         console.log(mongoData);
   
