@@ -58,6 +58,7 @@ app.listen(port, () => {
 async function processNewLead(leadId) {
     let response;
     var itego =  new Object();
+    var obj = new Object();
 
     try {
         // Get lead details by lead ID from Facebook API
@@ -74,11 +75,12 @@ async function processNewLead(leadId) {
     }
     // Extract fields
 
-    itego.token = form == 825951068323717 ? TokenDinero : TokenVivienda;
-    itego.prospecto = new Object();
-    itego.prospecto.nombre = response.data.field_data[0].values[0];
-    itego.prospecto.telefono = parseInt("7"+response.data.field_data[2].values[0].substring(response.data.field_data[2].values[0].length - 10));
-    itego.prospecto.localidad = response.data.field_data[1].values[0];
+    itego.token = form == 1788529178003984 ? TokenDinero : TokenVivienda;
+    response.data.field_data.forEach(function(element) {obj[element.name] = element.values[0];})
+    obj.telefono = parseInt("7"+obj.telefono.substring(obj.telefono.length - 10));
+    itego.prospecto = obj;
+
+
     console.log(response.data);
     console.log(itego);
     sendData(itego);
