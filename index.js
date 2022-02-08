@@ -75,7 +75,7 @@ async function processNewLead(leadId) {
     }
     // Extract fields
 
-    itego.token = form == 1788529178003984 ? TokenDinero : TokenVivienda;
+    itego.token = form == 665950964439281 ? TokenDinero : TokenVivienda;
     response.data.field_data.forEach(function(element) {obj[element.name] = element.values[0];})
     obj.telefono = parseInt(`8${obj.telefono.substring(obj.telefono.length - 10)}`);
     itego.prospecto = obj;
