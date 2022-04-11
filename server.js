@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 
 // Enter the Page Access Token from the previous step
-const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BALkoOziLNIsvIwZCbYfFLY1dt8zTwi1meSWTXFJMvoEIQZCmjK9CC1xwqNUg2hTtouRy1YQEgtFLEIGzbk9eTMeBvIJZAjRXQmm310jVQHrUMVufOdB09eyuLlatxanGe7iDmiIVYHnXsndwOEoZAn1ZC2U33CaZBDPq3JmF2T2YbowvSNRf4ZD';
+const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BAAOH92m76TowxoaNnvILV4Ac4kFb4foBa546shjaOVvYfjIckRb6VjZAe1dHfLvMwGIN6DDQHVEdCcgqaAnbugZCl5srZBPSjWUV76GZCeurQYBO0bQxwCv8p7LZBvpd7zWGOy7PYxIPutpZCIdqhj7w1QcbwibIvZCWqhTkpiFzeVhyl8aehvDaGMraPCsMQZDZD';
 
 // Accept JSON POST body
 app.use(bodyParser.json());
