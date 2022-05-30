@@ -76,18 +76,14 @@ async function processNewLead(leadId) {
     }
     // Extract fields
 
-    switch (form) {
-        case 665950964439281:
-            itego.token = TokenDinero;
-            break;
-        case 809830906640455:
-            itego.token = TokenVivienda;
-            break;
-        case 970738230263366:
-            itego.token = TokenViviendaStorino;
-            break;    
-        default:
-            break;
+    if(form ==665950964439281){
+        itego.token = TokenDinero;
+    }
+    else if(form ==809830906640455){
+        itego.token = TokenVivienda;
+    }
+    else if(form ==970738230263366){
+        itego.token = TokenViviendaStorino;
     }
 
     //itego.token = form == 665950964439281 ? TokenDinero : TokenVivienda;
