@@ -6,6 +6,7 @@ const { MongoClient } = require("mongodb");
 
 const TokenDinero = "5476255A-D84D-4F7B-87B2-C72B3CA8085B";
 const TokenVivienda = "83D6D11D-D029-40C9-AB1E-AB423C63598C";
+const TokenViviendaStorino = "1B4CEEAF-E046-442B-AD6C-732653A7B390";
 
 const app = express();
 const port = process.env.PORT || 3000;;
@@ -13,7 +14,7 @@ var form ="";
 var idLead = "";
 
 // Enter the Page Access Token from the previous step
-const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BANjF3EHiHVfwbIeWVzbiXhuZA8UMH7dvCACe6ZAIoNCw7uAqaZAQqcxUwqitMoy6MwQV1feKbFnoQ93qsT6LWwP3ltEVjNJ7s2zZBoFq59lr9ca5VaErHDyVGZBfp5faul1pHyJZBQmjzTXBtJqoB1SMZAmDEcoXiPD7uint2A68RgPcNMwYC0ZD';
+const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BACzn9IaTDfK59k70RcZBSF679ZCLRYpgMHCSTyBSwZAXvJNCeu1ITU70zHSCpjzh0ObVoZBLSjMxHwQidzNVHLGTOP051aXHbMAEhacByEVkZBWsLwhc1UaeOrNg2ZCiDFw0wD6xFGB44f9muUNUg0Yvp8DhlZBta8ESHPmCFB9Ge7mRfPQhGYZBpJNte44V5gZDZD';
 
 // Accept JSON POST body
 app.use(bodyParser.json());
@@ -75,7 +76,21 @@ async function processNewLead(leadId) {
     }
     // Extract fields
 
-    itego.token = form == 1788529178003984 ? TokenDinero : TokenVivienda;
+    switch (form) {
+        case 665950964439281:
+            itego.token = TokenDinero;
+            break;
+        case 809830906640455:
+            itego.token = TokenVivienda;
+            break;
+        case 970738230263366:
+            itego.token = TokenViviendaStorino;
+            break;    
+        default:
+            break;
+    }
+
+    //itego.token = form == 665950964439281 ? TokenDinero : TokenVivienda;
     response.data.field_data.forEach(function(element) {obj[element.name] = element.values[0];})
     obj.telefono = parseInt(`8${obj.telefono.substring(obj.telefono.length - 10)}`);
     itego.prospecto = obj;
