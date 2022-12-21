@@ -87,7 +87,7 @@ async function processNewLead(leadId) {
     else if(form ==970738230263366){
         itego.token = TokenViviendaStorino;
     }
-    else if(form == 483045163970045){
+    else if(form == 1175746696379045){
         itego.token = TokenViviendaGral;
     }
 
