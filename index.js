@@ -7,6 +7,7 @@ const { MongoClient } = require("mongodb");
 const TokenDinero = "5476255A-D84D-4F7B-87B2-C72B3CA8085B";
 const TokenVivienda = "83D6D11D-D029-40C9-AB1E-AB423C63598C";
 const TokenViviendaStorino = "1B4CEEAF-E046-442B-AD6C-732653A7B390";
+const TokenViviendaGral = "C1E7EEBE-2640-4E38-9EBD-B08C58DD6A74";
 
 const app = express();
 const port = process.env.PORT || 3000;;
@@ -85,6 +86,9 @@ async function processNewLead(leadId) {
     }
     else if(form ==970738230263366){
         itego.token = TokenViviendaStorino;
+    }
+    else if(form == 483045163970045){
+        itego.token = TokenViviendaGral;
     }
 
     //itego.token = form == 665950964439281 ? TokenDinero : TokenVivienda;
