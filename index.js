@@ -128,17 +128,10 @@ async function sendData(data) {
 
 async function addRecord(dataRecord){
   
-    const uri = "mongodb+srv://app:%40Emilio595@leads.hsfok.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-
-    const client = new MongoClient(uri);
-
-    try {
-        await client.connect();
-        const result = await client.db("leads").collection("leads").insertOne(dataRecord);
-        console.log(`Registro agregado correctamente ID: ${result.insertedId}`);
-    } 
-    finally {
-        // Close the connection to the MongoDB cluster
-        await client.close();
+try{
+    respuesta = await axios.post('https://enumwb3hr5c7rvf.m.pipedream.net', dataRecord);
+}
+   catch(err){
+        console.log(err);
     }
 }
