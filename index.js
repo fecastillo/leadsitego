@@ -8,6 +8,7 @@ const TokenDinero = "5476255A-D84D-4F7B-87B2-C72B3CA8085B";
 const TokenVivienda = "83D6D11D-D029-40C9-AB1E-AB423C63598C";
 const TokenViviendaStorino = "1B4CEEAF-E046-442B-AD6C-732653A7B390";
 const TokenViviendaGral = "C1E7EEBE-2640-4E38-9EBD-B08C58DD6A74";
+const TokenAle = "BFBD61F8-C85C-4226-8A4B-EAA944984375";
 
 const app = express();
 const port = process.env.PORT || 3000;;
@@ -89,6 +90,9 @@ async function processNewLead(leadId) {
     }
     else if(form == 1175746696379045){
         itego.token = TokenViviendaGral;
+    }
+    else if(form == 207302345223994){
+        itego.token = TokenAle;
     }
 
     //itego.token = form == 665950964439281 ? TokenDinero : TokenVivienda;
