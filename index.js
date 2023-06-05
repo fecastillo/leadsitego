@@ -16,8 +16,7 @@ var form ="";
 var idLead = "";
 
 // Enter the Page Access Token from the previous step
-// VENCE 07/12/2022
-const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BALDcUBoZA1GUyZArBVN9TZATqd9gNxJF3k2aM7wPcQYeYxw0qxEuecWZCDJg40B37QJMZCerkXcH6Lzje9aZCfdPmZBjt6ERIYRBJdIXNegxorUBtCDkGHcGUprXq7daUHj3UK7kBA3wh1fF93tocfxpetvYePGhZC3ncEVMXsWKibP4s6YTEfv6WA0yZBRNzOgZDZD';
+const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BADAFnhOfpMU4LD80TTO8fxuYery5dyxAgwHx0GDe8gFbZAGUqhfYB1nL5ZBtmwwACyjwgkcf01gQ4IsgB4w5Npq3fM4b6Mn5LqkJxD1bug63BfPhMgGS3xQZCfKF3LbphsY5oTHN9mDnzmW4n4Eew1facrZBwvedOHgKu5o8dVkmMHZBJXPTpJp3szA4GxgZDZD';
 
 // Accept JSON POST body
 app.use(bodyParser.json());
