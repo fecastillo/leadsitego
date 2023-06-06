@@ -9,6 +9,8 @@ const { MongoClient } = require("mongodb");
 const TokenDinero = "5476255A-D84D-4F7B-87B2-C72B3CA8085B";
 const TokenVivienda = "83D6D11D-D029-40C9-AB1E-AB423C63598C";
 const TokenViviendaStorino = "1B4CEEAF-E046-442B-AD6C-732653A7B390";
+const TokenViviendaGral = "C1E7EEBE-2640-4E38-9EBD-B08C58DD6A74";
+const TokenAle = "BFBD61F8-C85C-4226-8A4B-EAA944984375";
 
 const app = express();
 const port = process.env.PORT || 3000;;
@@ -16,8 +18,7 @@ var form ="";
 var idLead = "";
 
 // Enter the Page Access Token from the previous step
-// VENCE 07/12/2022
-const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BAIwnZAzjECIiz5eEeXL3qZA4SZACL18ZCbqolSV43esLCqhmQ4AZC9WWRhSNB5fkeukc2XNAYMS9XJFn2xwsYUvQS4XevXGZBfcC0yqCOzsoUXkZBowpdYAACZA3dY7i7VBB5GTLxfE40v7zuj1UmTnGiPsKcA4DAU4z5vRvoMYLjRy26I5KigMZD';
+const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BADAFnhOfpMU4LD80TTO8fxuYery5dyxAgwHx0GDe8gFbZAGUqhfYB1nL5ZBtmwwACyjwgkcf01gQ4IsgB4w5Npq3fM4b6Mn5LqkJxD1bug63BfPhMgGS3xQZCfKF3LbphsY5oTHN9mDnzmW4n4Eew1facrZBwvedOHgKu5o8dVkmMHZBJXPTpJp3szA4GxgZDZD';
 
 // Accept JSON POST body
 app.use(bodyParser.json());
@@ -88,10 +89,16 @@ async function processNewLead(leadId) {
     else if(form ==970738230263366){
         itego.token = TokenViviendaStorino;
     }
+    else if(form == 1175746696379045){
+        itego.token = TokenViviendaGral;
+    }
+    else if(form == 207302345223994){
+        itego.token = TokenAle;
+    }
 
     //itego.token = form == 665950964439281 ? TokenDinero : TokenVivienda;
     response.data.field_data.forEach(function(element) {obj[element.name] = element.values[0];})
-    obj.telefono = parseInt(`8${obj.telefono.substring(obj.telefono.length - 10)}`);
+    obj.telefono = parseInt(`92${obj.telefono.substring(obj.telefono.length - 10)}`);
     itego.prospecto = obj;
 
 
@@ -126,17 +133,10 @@ async function sendData(data) {
 
 async function addRecord(dataRecord){
   
-    const uri = "mongodb+srv://app:%40Emilio595@leads.hsfok.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-
-    const client = new MongoClient(uri);
-
-    try {
-        await client.connect();
-        const result = await client.db("leads").collection("leads").insertOne(dataRecord);
-        console.log(`Registro agregado correctamente ID: ${result.insertedId}`);
-    } 
-    finally {
-        // Close the connection to the MongoDB cluster
-        await client.close();
+try{
+    respuesta = await axios.post('https://enumwb3hr5c7rvf.m.pipedream.net', dataRecord);
+}
+   catch(err){
+        console.log(err);
     }
 }
