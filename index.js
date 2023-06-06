@@ -3,23 +3,16 @@ const axios = require('axios');
 const express = require('express');
 const bodyParser = require('body-parser');
 const { MongoClient } = require("mongodb");
-
-
-
-const TokenDinero = "5476255A-D84D-4F7B-87B2-C72B3CA8085B";
-const TokenVivienda = "83D6D11D-D029-40C9-AB1E-AB423C63598C";
-const TokenViviendaStorino = "1B4CEEAF-E046-442B-AD6C-732653A7B390";
-const TokenViviendaGral = "C1E7EEBE-2640-4E38-9EBD-B08C58DD6A74";
-const TokenAle = "BFBD61F8-C85C-4226-8A4B-EAA944984375";
-
+const TokenDinero = process.env.TOKEN_DINERO;
+const TokenVivienda = process.env.TOKEN_VIVIENDA;
+const TokenViviendaStorino = process.env.TOKEN_STORINO;
+const TokenViviendaGral = process.env.TOKEN_VIVIENDA_GENERAL;
+const TokenAle = process.env.TOKEN_ALE;
+const FACEBOOK_PAGE_ACCESS_TOKEN = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
 const app = express();
 const port = process.env.PORT || 3000;;
-var form ="";
-var idLead = "";
-
-// Enter the Page Access Token from the previous step
-const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAkRzhbejN8BADAFnhOfpMU4LD80TTO8fxuYery5dyxAgwHx0GDe8gFbZAGUqhfYB1nL5ZBtmwwACyjwgkcf01gQ4IsgB4w5Npq3fM4b6Mn5LqkJxD1bug63BfPhMgGS3xQZCfKF3LbphsY5oTHN9mDnzmW4n4Eew1facrZBwvedOHgKu5o8dVkmMHZBJXPTpJp3szA4GxgZDZD';
-
+var form;
+var idLead;
 // Accept JSON POST body
 app.use(bodyParser.json());
 
@@ -29,7 +22,7 @@ app.get('/webhook', (req, res) => {
     // To verify that the webhook is set up
     // properly, by sending a special challenge that
     // we need to echo back if the "verify_token" is as specified
-    if (req.query['hub.verify_token'] === 'CUSTOM_WEBHOOK_VERIFY_TOKEN') {
+    if (req.query['hub.verify_token'] === process.env.CUSTOM_WEBHOOK_VERIFY_TOKEN) {
         res.send(req.query['hub.challenge']);
         return;
     }
@@ -57,7 +50,7 @@ app.post('/webhook', async (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Server listening at http://localhost:${port}`)
 });
 
 async function processNewLead(leadId) {
@@ -79,29 +72,28 @@ async function processNewLead(leadId) {
         return console.warn(`An invalid response was received from the Facebook API: ${response}`);
     }
     // Extract fields
-
-    if(form ==665950964439281){
-        itego.token = TokenDinero;
+    switch (form) {
+        case 665950964439281:
+            itego.token = TokenDinero;
+            break;
+        case 809830906640455:
+            itego.token = TokenVivienda;
+            break;
+        case 970738230263366:
+            itego.token = TokenViviendaStorino;
+            break;
+        case 1175746696379045:
+            itego.token = TokenViviendaGral;
+            break;
+        case 207302345223994:
+            itego.token = TokenAle;
+            break;
+        default:
+            break;
     }
-    else if(form ==809830906640455){
-        itego.token = TokenVivienda;
-    }
-    else if(form ==970738230263366){
-        itego.token = TokenViviendaStorino;
-    }
-    else if(form == 1175746696379045){
-        itego.token = TokenViviendaGral;
-    }
-    else if(form == 207302345223994){
-        itego.token = TokenAle;
-    }
-
-    //itego.token = form == 665950964439281 ? TokenDinero : TokenVivienda;
     response.data.field_data.forEach(function(element) {obj[element.name] = element.values[0];})
     obj.telefono = parseInt(`92${obj.telefono.substring(obj.telefono.length - 10)}`);
     itego.prospecto = obj;
-
-
     console.log(response.data);
     console.log(itego);
     sendData(itego);
@@ -109,34 +101,11 @@ async function processNewLead(leadId) {
 }
 
 async function sendData(data) {
-    let respuesta; 
-    let mongoData = new Object();
     try{
         respuesta = await axios.post('https://autocredito.itego.com.ar/index.php?r=webService/apiLanding', data);
-        //console.log(respuesta.data);
-        mongoData.nombre = data.prospecto.nombre;
-        mongoData.telefono = data.prospecto.telefono;
-        mongoData.localidad = data.prospecto.localidad;
-        mongoData.estado = respuesta.data.estado;
-        mongoData.mensaje = respuesta.data.mensaje;
-        mongoData.fecha = new Date();
-        mongoData.formulario = form;
-        mongoData.idLead = idLead;
-        addRecord(mongoData);
-        console.log(mongoData);
-  
+        //console.log(respuesta.data);  
     }
     catch(err){
-        console.log(err);
-    }
-}
-
-async function addRecord(dataRecord){
-  
-try{
-    respuesta = await axios.post('https://enumwb3hr5c7rvf.m.pipedream.net', dataRecord);
-}
-   catch(err){
         console.log(err);
     }
 }
