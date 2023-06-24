@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 // Almacenar tokens de acceso en un objeto para facilitar su gestión
 const tokens = {
     dinero: process.env.TOKEN_DINERO,
-    vivienda: process.env.TOKEN_VIVIENDA,
+    viviendaLescano: process.env.TOKEN_LESCANO,
     viviendaStorino: process.env.TOKEN_STORINO,
     viviendaGral: process.env.TOKEN_VIVIENDA_GENERAL,
     ale: process.env.TOKEN_ALE,
@@ -82,15 +82,13 @@ async function processNewLead(leadId, form_id) {
     }
 
     // Extraer campos del formulario y almacenarlos en un objeto
-    if (form_id == 665950964439281) {
+    if (form_id == 650993983620616) {
         itego.token = tokens.dinero;
-    } else if (form_id == 809830906640455) {
-        itego.token = tokens.vivienda;
+    } else if (form_id == 122081190913707) {
+        itego.token = tokens.viviendaLescano;
     } else if (form_id == 970738230263366) {
         itego.token = tokens.viviendaStorino;
-    } else if (form_id == 1175746696379045) {
-        itego.token = tokens.viviendaGral;
-    } else if (form_id == 207302345223994) {
+    } else if (form_id == 6602994939723228) {
         itego.token = tokens.ale;
     } else if (form_id == 967442801256466) {
         itego.token = tokens.nueva_imagen_vivienda;
