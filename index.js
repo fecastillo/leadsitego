@@ -11,6 +11,7 @@ const tokens = {
     viviendaStorino: process.env.TOKEN_STORINO,
     viviendaGral: process.env.TOKEN_VIVIENDA_GENERAL,
     ale: process.env.TOKEN_ALE,
+    nueva_imagen_vivienda: process.env.TOKEN_NUEVO_IMAGEN_VIVIENDA,
     facebookPage: process.env.FACEBOOK_PAGE_ACCESS_TOKEN
 };
 
@@ -91,7 +92,10 @@ async function processNewLead(leadId, form_id) {
         itego.token = tokens.viviendaGral;
     } else if (form_id == 207302345223994) {
         itego.token = tokens.ale;
+    } else if (form_id == 967442801256466) {
+        itego.token = tokens.nueva_imagen_vivienda;
     }
+
     
     response.data.field_data.forEach(function(element) {itego.prospecto[element.name] = element.values[0];})
     
