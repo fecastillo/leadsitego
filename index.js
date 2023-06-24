@@ -82,13 +82,11 @@ async function processNewLead(leadId, form_id) {
     }
 
     // Extraer campos del formulario y almacenarlos en un objeto
-    if (form_id == 650993983620616) {
+    if (form_id == 650993983620616 || form_id == 1175746696379045) {
         itego.token = tokens.dinero;
-    } else if (form_id == 122081190913707) {
+    } else if (form_id == 122081190913707 || form_id == 809830906640455) {
         itego.token = tokens.viviendaLescano;
-    } else if (form_id == 970738230263366) {
-        itego.token = tokens.viviendaStorino;
-    } else if (form_id == 6602994939723228) {
+    } else if (form_id == 6602994939723228 || form_id == 207302345223994) {
         itego.token = tokens.ale;
     } else if (form_id == 967442801256466) {
         itego.token = tokens.nueva_imagen_vivienda;
