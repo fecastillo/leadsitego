@@ -8,9 +8,7 @@ const bodyParser = require('body-parser');
 const tokens = {
     dinero: process.env.TOKEN_DINERO,
     viviendaLescano: process.env.TOKEN_LESCANO,
-    viviendaStorino: process.env.TOKEN_STORINO,
-    viviendaGral: process.env.TOKEN_VIVIENDA_GENERAL,
-    ale: process.env.TOKEN_ALE,
+    viviendaAle: process.env.TOKEN_ALE,
     nueva_imagen_vivienda: process.env.TOKEN_NUEVO_IMAGEN_VIVIENDA,
     facebookPage: process.env.FACEBOOK_PAGE_ACCESS_TOKEN
 };
@@ -87,7 +85,7 @@ async function processNewLead(leadId, form_id) {
     } else if (form_id == 122081190913707 || form_id == 809830906640455) {
         itego.token = tokens.viviendaLescano;
     } else if (form_id == 6602994939723228 || form_id == 207302345223994) {
-        itego.token = tokens.ale;
+        itego.token = tokens.viviendaAle;
     } else if (form_id == 967442801256466) {
         itego.token = tokens.nueva_imagen_vivienda;
     }
