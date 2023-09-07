@@ -93,7 +93,7 @@ async function processNewLead(leadId, form_id) {
     
     response.data.field_data.forEach(function(element) {itego.prospecto[element.name] = element.values[0];})
     
-    itego.prospecto.telefono = parseInt(`92${itego.prospecto.telefono.substring(itego.prospecto.telefono.length - 10)}`);
+    itego.prospecto.telefono = parseInt(`93${itego.prospecto.telefono.substring(itego.prospecto.telefono.length - 10)}`);
     
     //itego.prospecto = obj;
     
